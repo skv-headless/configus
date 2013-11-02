@@ -7,8 +7,8 @@ module Configus
   autoload :ProxyBuilder, 'configus/proxy_builder'
 
 
-  def self.build(&block)
-    builder = Builder.build(&block)
+  def self.build(environment, &block)
+    builder = Builder.build(environment, &block)
     Config.new(builder)
   end
 end

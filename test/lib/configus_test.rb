@@ -2,8 +2,7 @@ require "test_helper"
 
 class ConfigusTest < TestCase
   def setup
-    ENV['CONFIGUS'] = 'test'
-    @configus = Configus.build do
+    @configus = Configus.build :test do
       env :test do
         c 'c'
         a do
@@ -12,8 +11,7 @@ class ConfigusTest < TestCase
       end
     end
 
-    ENV['CONFIGUS'] = 'development'
-    @configus_inheritance = Configus.build do
+    @configus_inheritance = Configus.build :development do
       env :development do
         c 'development_c'
       end

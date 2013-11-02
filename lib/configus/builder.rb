@@ -2,10 +2,9 @@ module Configus
   class Builder
     attr_reader :result
 
-    def self.build(&block)
-      environment = ENV['CONFIGUS'] || 'test'
+    def self.build(environment, &block)
       builder = new(&block)
-      builder.result[environment.to_sym]
+      builder.result[environment]
     end
 
     def initialize(&block)
@@ -13,8 +12,8 @@ module Configus
       instance_eval &block
     end
 
-    def env(env, &block)
-      @result[env.to_sym] = Configus::ProxyBuilder.build(&block)
+    def env(environment, &block)
+      @result[environment.to_sym] = Configus::ProxyBuilder.build(&block)
     end
   end
 end
