@@ -2,10 +2,13 @@ require "test_helper"
 
 class ConfigusTest < TestCase
   def setup
+    ENV['CONFIGUS'] = 'test'
     @configus = Configus.build do
-      c 'c'
-      a do
-        b 'b'
+      env :test do
+        c 'c'
+        a do
+          b 'b'
+        end
       end
     end
   end
