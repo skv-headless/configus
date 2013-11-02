@@ -14,6 +14,9 @@ module Configus
 
     def env(environment, options = {}, &block)
       @result[environment.to_sym] = Configus::ProxyBuilder.build(&block)
+      if options[:parent]
+        @result[environment.to_sym] = @result[environment.to_sym].merge(@result[options[:parent]])
+      end
     end
   end
 end

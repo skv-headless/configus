@@ -12,7 +12,13 @@ class ConfigusTest < TestCase
     end
 
     @configus_inheritance = Configus.build :development do
-      env :development do
+      env :production do
+        a do
+          b 'inheritance_b'
+        end
+      end
+
+      env :development, parent: :production do
         c 'development_c'
       end
 
@@ -29,5 +35,6 @@ class ConfigusTest < TestCase
 
   def test_inheritance
     assert_equal 'development_c', @configus_inheritance.c
+    assert_equal 'inheritance_b', @configus_inheritance.a.b
   end
 end
