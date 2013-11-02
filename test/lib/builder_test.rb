@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BuilderTest < TestCase
   def setup
-    @builder = Configus::Builder.new do
+    @builder = Configus::Builder.build :test do
       env :test do
         c 'c'
         a do
@@ -12,11 +12,11 @@ class BuilderTest < TestCase
     end
   end
 
-  #def test_simple
-  #  assert_equal 'c', @builder.build[:c]
-  #end
-  #
-  #def test_nested
-  #  assert_equal 'b', @builder.build[:a][:b]
-  #end
+  def test_simple
+   assert_equal 'c', @builder[:c]
+  end
+
+  def test_nested
+   assert_equal 'b', @builder[:a][:b]
+  end
 end
