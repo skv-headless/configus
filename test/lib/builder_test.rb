@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BuilderTest < TestCase
   def setup
-    @builder = Configus::Builder.build do
+    @builder = Configus::Builder.new do
       def a
         1
       end
