@@ -12,14 +12,14 @@ class ConfigusTest < TestCase
     end
 
     @configus_inheritance = Configus.build :development do
+      env :development, parent: :production do
+        c 'development_c'
+      end
+
       env :production do
         a do
           b 'inheritance_b'
         end
-      end
-
-      env :development, parent: :production do
-        c 'development_c'
       end
 
       env :test do
