@@ -1,16 +1,16 @@
 module Configus
   class Config
-    attr_reader :hash
-
     def initialize(hash)
       @hash = hash
     end
 
     def method_missing(method_name, *args, &block)
-      if @hash.has_key?(method_name)
-        @hash[method_name]
+      raise "#{method_name} doesn't exist" unless @hash.has_key?(method_name)
+
+      if @hash[method_name].kind_of? Hash
+        self.class.new(@hash[method_name])
       else
-        raise "#{method_name} doesn't exist"
+        @hash[method_name]
       end
     end
 
