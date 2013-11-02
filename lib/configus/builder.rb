@@ -12,7 +12,7 @@ module Configus
       instance_eval &block
     end
 
-    def env(environment, &block)
+    def env(environment, options = {}, &block)
       @result[environment.to_sym] = Configus::ProxyBuilder.build(&block)
     end
   end
