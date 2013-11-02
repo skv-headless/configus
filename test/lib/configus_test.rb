@@ -2,7 +2,6 @@ require "test_helper"
 
 class ConfigusTest < TestCase
   def setup
-    ENV['CONFIGUS'] = 'test'
     @configus = Configus.build do
       env :test do
         c 'c'

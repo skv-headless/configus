@@ -13,7 +13,7 @@ module Configus
     end
 
     def env(env, &block)
-      @result = Configus::ProxyBuilder.new(&block).hash
+      @result = Configus::ProxyBuilder.build(&block)
     end
   end
 end

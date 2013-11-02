@@ -2,6 +2,11 @@ module Configus
   class ProxyBuilder
     attr_reader :hash
 
+    def self.build(&block)
+      proxy = new(&block)
+      proxy.hash
+    end
+
     def initialize(&block)
       @hash = {}
       instance_eval &block
