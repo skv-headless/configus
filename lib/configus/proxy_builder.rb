@@ -8,12 +8,7 @@ module Configus
     end
 
     def method_missing(method_name, *args, &block)
-      if block_given?
-        @hash[method_name] = Configus::ProxyBuilder.new(&block).hash
-      else
-        @hash[method_name] = args[0]
-        @hash
-      end
+      @hash[method_name] = block_given? ? Configus::ProxyBuilder.new(&block).hash : args[0]
     end
   end
 end
