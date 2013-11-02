@@ -8,7 +8,7 @@ module Configus
 
 
   def self.build(&block)
-    builder = Builder.new(&block)
-    Config.new(builder.result)
+    builder = Builder.build(&block)
+    Config.new(builder)
   end
 end
